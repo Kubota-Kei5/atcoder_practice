@@ -1,29 +1,20 @@
 # %%
-a = True  # True または False
-b = False  # True または False
-c = True  # True または False
- 
-# ここから先は変更しないこと
- 
-assert (a is True) or (a is False)
-assert (b is True) or (b is False)
-assert (c is True) or (c is False)
- 
-if a:
-    print("At", end="")
+input_int = list(map(int, input().split(" ")))
+# sorted_li = sorted(input_int)
+unique_li = list(set(input_int))
+
+# len(unique_li)
+if len(unique_li) == 2:
+    print("Yes")
 else:
-    print("Yo", end="")
- 
-if not a and b:
-    print("Bo", end="")
+    print("No")
+
+input_int = list(map(int, input().split(" ")))
+unique_li = list(set(input_int))
+
+if len(unique_li) == 2:
+    print("Yes")
 else:
-    print("Co", end="")
- 
-if a and b and c:
-    print("foo!", end="")
-elif True and False:
-    print("year!", end="")
-elif not a or c:
-    print("der", end="")
- 
-print("")
+    print("No")
+
+# %%
