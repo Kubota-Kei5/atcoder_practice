@@ -8,8 +8,10 @@ def create_python_files(n_start, n_end, x, save_dir):
         return
     
     try:
-        if x not in ['A', 'B', 'C']:
-            print('保存先のディレクトリが存在しません。')
+        # 保存先ディレクトリの存在チェック
+        if not os.path.exists(save_dir):
+            print('エラー: 保存先のディレクトリが存在しません。')
+            return
         
         for n in range(n_start, n_end + 1):
             # 3桁の整数に変換
@@ -17,9 +19,15 @@ def create_python_files(n_start, n_end, x, save_dir):
             file_name = f'{n}_{x}.py'
             file_path = os.path.join(save_dir, file_name)
 
+            # ファイルが存在する場合のエラーハンドリング
+            if os.path.exists(file_path):
+                print(f'エラー: ファイル "{file_name}" が既に存在します。処理を中止します。')
+                return
+
             # ファイル作成
             with open(file_path, 'w') as file:
-                file.write('# %%\nA = input()')
+                file.write('# %%\ntest')
+        
         print(f'Success:\n{n_start}_Xから{n_end}_Xまでのファイルを{save_dir}に作成しました。')
 
     except Exception as e:
@@ -27,11 +35,10 @@ def create_python_files(n_start, n_end, x, save_dir):
 
 
 # ユーザーから入力を受け取る
-n_start = 350 # N_start（開始する3桁の整数）を入力
-n_end = 358 # N_end（終了する3桁の整数）を入力
+n_start = 348 # N_start（開始する3桁の整数）を入力
+n_end = 349 # N_end（終了する3桁の整数）を入力
 x = 'A' # A, B, Cのいずれかを入力
 save_dir = './ABC/300~399' # ファイルの保存先パスを入力
 
 # ファイル作成関数の実行
 create_python_files(n_start, n_end, x, save_dir)
-# %%
