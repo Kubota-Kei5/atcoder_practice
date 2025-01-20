@@ -26,7 +26,7 @@ def create_python_files(n_start, n_end, x, save_dir):
 
             # ファイル作成
             with open(file_path, 'w') as file:
-                file.write('# %%\ntest')
+                file.write('# %%\nN=input()')
         
         print(f'Success:\n{n_start}_Xから{n_end}_Xまでのファイルを{save_dir}に作成しました。')
 
@@ -42,3 +42,4 @@ save_dir = './ABC/300~399' # ファイルの保存先パスを入力
 
 # ファイル作成関数の実行
 create_python_files(n_start, n_end, x, save_dir)
+# %%
