@@ -11,4 +11,3 @@ else:
             print('No')
             break
     print('Yes')
-# %%

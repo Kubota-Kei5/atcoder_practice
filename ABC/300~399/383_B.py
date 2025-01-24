@@ -1,4 +1,3 @@
-# %%
 from itertools import combinations
 
 h,w,d=map(int,input().split())
@@ -22,5 +21,3 @@ for (x1,y1),(x2,y2) in combinations(floors,2):
     max_humidified=max(max_humidified, len(humidified))
 
 print(max_humidified)
-
-# %%
