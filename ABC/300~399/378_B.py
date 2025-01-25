@@ -10,6 +10,3 @@ y=[]
 for i in range(q):
     a,b=map(int,input().split())
     y.append([a,b])
-
-for j in range(0,q):
-    y[j][1]%
