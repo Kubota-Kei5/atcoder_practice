@@ -36,7 +36,7 @@ def create_python_files(n_start, n_end, x, save_dir):
 
 # ユーザーから入力を受け取る
 n_start = 362 # N_start（開始する3桁の整数）を入力
-n_end = 366 # N_end（終了する3桁の整数）を入力
+n_end = 364 # N_end（終了する3桁の整数）を入力
 x = 'B' # A, B, Cのいずれかを入力
 save_dir = './ABC/300~399' # ファイルの保存先パスを入力
 
