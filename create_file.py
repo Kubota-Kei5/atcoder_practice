@@ -28,16 +28,16 @@ def create_python_files(n_start, n_end, x, save_dir):
             with open(file_path, 'w') as file:
                 file.write('# %%\nN=input()')
         
-        print(f'Success:\n{n_start}_Xから{n_end}_Xまでのファイルを{save_dir}に作成しました。')
+        print(f'Success:\n{n_start}_{x}から{n_end}_{x}までのファイルを{save_dir}に作成しました。')
 
     except Exception as e:
         print(f'ファイル作成中にエラーが発生しました: {e}')
 
 
 # ユーザーから入力を受け取る
-n_start = 391 # N_start（開始する3桁の整数）を入力
-n_end = 391 # N_end（終了する3桁の整数）を入力
-x = 'C' # A, B, Cのいずれかを入力
+n_start = 362 # N_start（開始する3桁の整数）を入力
+n_end = 362 # N_end（終了する3桁の整数）を入力
+x = 'B' # A, B, Cのいずれかを入力
 save_dir = './ABC/300~399' # ファイルの保存先パスを入力
 
 # ファイル作成関数の実行
