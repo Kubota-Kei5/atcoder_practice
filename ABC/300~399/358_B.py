@@ -3,12 +3,11 @@ N=int(input())
 A=int(input())
 T=list(map(int,input().split()))
 
-wait_list=0
-now=[]
-isWate=False
-for a in A:
-    if isWate:
-        
+pre=0
 
+for i in range(N):
+    ans=max(pre,T[i])+A
+    print(ans)
+    pre=ans
 
 
