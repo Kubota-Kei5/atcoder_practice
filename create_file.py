@@ -1,5 +1,6 @@
 # %%
 import os
+import shutil
 
 def create_python_files(n_start, n_end, x, save_dir):
     # Xが有効な値かチェック
@@ -35,11 +36,32 @@ def create_python_files(n_start, n_end, x, save_dir):
 
 
 # ユーザーから入力を受け取る
-n_start = 378 # N_start（開始する3桁の整数）を入力
-n_end = 379 # N_end（終了する3桁の整数）を入力
+n_start = 393 # N_start（開始する3桁の整数）を入力
+n_end = 393 # N_end（終了する3桁の整数）を入力
 x = 'C' # A, B, Cのいずれかを入力
-save_dir = './ABC/300~399' # ファイルの保存先パスを入力
+save_dir = './ABC/300~399/' # ファイルの保存先パスを入力
 
 # ファイル作成関数の実行
 create_python_files(n_start, n_end, x, save_dir)
+
+# 作業ディレクトリ（フォルダとファイルが存在する場所）
+base_dir = "./ABC/300~399"
+
+# フォルダの一覧を取得（001 〜 100）
+folders = {f"{i:03}" for i in range(300, 400)}
+
+# base_dir 内のすべてのファイルを取得
+for file_name in os.listdir(base_dir):
+    file_path = os.path.join(base_dir, file_name)
+    
+    # ファイルであることを確認
+    if os.path.isfile(file_path):
+        prefix = file_name[:3]  # 先頭3文字を取得
+        
+        # 先頭3文字がフォルダリストにある場合
+        if prefix in folders:
+            target_folder = os.path.join(base_dir, prefix)
+            os.makedirs(target_folder, exist_ok=True)  # フォルダがない場合は作成
+            shutil.move(file_path, os.path.join(target_folder, file_name))  # ファイルを移動
+
 # %%
