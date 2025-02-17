@@ -1,19 +1,17 @@
-# %%
 N=int(input())
 
 P=list(map(int,input().split()))
-l=[]
+l={}
 for i in range(N):
-    l.append({P[i]:i+1})
-
-print(l)
+    l.update([(P[i],i+1)])
 
 Q=int(input())
 
 for i in range(Q):
     query=list(map(int,input().split()))
-    comp=101
-    for j in range(N):
-        if l[j][0]==query[0] or l[j][0]==query[0]:
-           comp=min(comp,l[j][1])
-    print(comp) 
+    a=l[query[0]]
+    b=l[query[1]]
+    if a<b:
+        print(query[0])
+    else:
+        print(query[1]) 
