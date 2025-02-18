@@ -1,3 +1,4 @@
+# %%
 H,W,N=map(int,input().split())
 T=str(input())
 
