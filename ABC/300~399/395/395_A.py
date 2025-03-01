@@ -1,9 +1,12 @@
 # %%
-S=input()
-ans=[]
-for i in range(len(S)):
-    if S[i]=='2':
-        ans.append(S[i])
 
-print(''.join(ans))
-# %%
+N = int(input())
+A=list(map(int,input().split()))
+
+for i in range(N-1):
+    if A[i]<A[i+1]:
+        continue
+    else:
+        print('No')
+        exit()
+print('Yes')
