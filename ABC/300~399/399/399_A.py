@@ -1,17 +1,15 @@
 # %%
-X = int(input())
-ans=[]
-A=X//2
-if X%2==0:
-    add_str='-'*(A-1)
-    ans.append(add_str)
-    ans.append('==')
-    ans.append(add_str)
-else:
-    add_str='-'*(A)
-    ans.append(add_str)
-    ans.append('=')
-    ans.append(add_str)
+N=int(input())
+S=list(str(input()))
+T=list(str(input()))
 
-print(''.join(ans))
+ans=0
+for i in range(N):
+    if S[i] == T[i]:
+        pass
+    else:
+        ans+=1
+        
+print(ans)
+
 # %%

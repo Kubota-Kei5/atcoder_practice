@@ -1,39 +1,84 @@
 # %%
-N=int(input())
-A=list(map(int,input().split()))
+def main():
+    import sys
+    sys.setrecursionlimit(10**7)     # 再帰関数の再帰回数上限を指定
+    N, M = map(int, input().split())
+    graph = [[] for _ in range(N)]   # 隣接リストの初期化
+    
+    for _ in range(M):
+        u, v = map(int, input().split())
+        u -= 1  # 0-indexに変換
+        v -= 1
+        graph[u].append(v)
+        graph[v].append(u)  # 無向グラフの初期状態を作成
 
-sorted_A=sorted(A)
-tmp={}
-before=0
-ans=0
-for i in range(N):
-    if sorted_A[i] not in tmp:
-        tmp[sorted_A[i]]=1
-        before=ans
-        ans=sorted_A[i]
-    else:
-        tmp[sorted_A[i]]+=1
-        ans=before
+    visited = [False] * N  # 各ノードの訪問状態を管理
+    used_edges=set()  # 使用済みの辺を管理
+    delete_edges = 0
 
-if ans==0:
-    print(-1)
-else:
-    print(ans)
+    def dfs(v, parent):   # v：探索開始ノード, parent：親ノード
+        nonlocal delete_edges
+        visited[v] = True # 訪問済みの処理
+        for neighbor in graph[v]:
+            # 辺を一方向として扱い、重複カウントを防ぐ
+            edge = tuple(sorted((v, neighbor)))
+            if edge in used_edges:
+                continue
+            used_edges.add(edge)
+
+            if not visited[neighbor]:
+                dfs(neighbor, v)
+            elif neighbor != parent:
+                delete_edges += 1 #親以外の訪問済み => 閉路の検出
+
+    for i in range(N):
+        if not visited[i]: # 未訪問のノードがあればDFSを実行
+            dfs(i, -1)
+
+    # 無向グラフなので1つの閉路は2回数えられる => 半分にする
+    print(delete_edges)
+
+if __name__ == "__main__":
+    main()
 
 # %%
-from collections import Counter
+# これでAC
+def main():
+    import sys
+    sys.setrecursionlimit(10**7)
+    input = sys.stdin.readline
 
-N = int(input())
-A = list(map(int, input().split()))
+    N, M = map(int, input().split())
+    edges = [tuple(map(int, input().split())) for _ in range(M)]
 
-freq = Counter(A)
+    # Union-Find構造
+    parent = list(range(N))
+    size = [1] * N
 
-unique_nums = []
-for x in freq:
-    if freq[x] == 1:
-        unique_nums.append(x)
+    def find(x):
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]  # 経路圧縮
+            x = parent[x]
+        return x
 
-if len(unique_nums) == 0:
-    print(-1)
-else:
-    print(A.index(max(unique_nums))+1)
+    def union(x, y):
+        rx, ry = find(x), find(y)
+        if rx == ry:
+            return False  # 閉路発見 → 削除すべき辺
+        if size[rx] < size[ry]:
+            rx, ry = ry, rx
+        parent[ry] = rx
+        size[rx] += size[ry]
+        return True
+
+    delete_count = 0
+    for u, v in edges:
+        u -= 1  # 0-index に変換
+        v -= 1
+        if not union(u, v):
+            delete_count += 1
+
+    print(delete_count)
+
+if __name__ == "__main__":
+    main()
