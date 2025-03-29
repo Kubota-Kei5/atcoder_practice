@@ -1,0 +1,1 @@
+# https://zenn.dev/koyanagihitoshi/books/atcoder-classification-4/viewer/10-2-1
