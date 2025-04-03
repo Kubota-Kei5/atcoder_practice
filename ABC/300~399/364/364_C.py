@@ -27,15 +27,20 @@ min_sweet = sweet_strategy(N,X,A)
 min_salty = salty_strategy(N,Y,B)
 if min_sweet is None and min_salty is None:
     print(N)
+elif min_sweet is None:
+    min_sweet = N
+elif min_salty is None:
+    min_salty = N
 else:
     min_cnt = min(min_sweet, min_salty)
     print(min_cnt)
 
 # %%
 # 累積和と二分探索で探索回数を短縮
+# こっちでAC
 
 from itertools import accumulate
-from bisect import bisect_left
+from bisect import bisect_right
 
 N,X,Y=map(int,input().split())
 A=list(map(int, input().split()))
@@ -47,7 +52,7 @@ sorted_B=sorted(B,reverse=True)
 def sweet_strategy(X,sorted_A):
     prefix_A = list(accumulate(sorted_A))
     if prefix_A[-1] > X:
-        index_sweet = bisect_left(prefix_A, X)
+        index_sweet = bisect_right(prefix_A, X)
         sweet_cnt= index_sweet + 1
         return sweet_cnt
     else:
@@ -57,7 +62,7 @@ def sweet_strategy(X,sorted_A):
 def salty_strategy(Y,sorted_B):
     prefix_B= list(accumulate(sorted_B))
     if prefix_B[-1] > Y:
-        index_salty = bisect_left(prefix_B, Y)
+        index_salty = bisect_right(prefix_B, Y)
         salty_cnt = index_salty + 1
         return salty_cnt
     else:
@@ -66,8 +71,14 @@ def salty_strategy(Y,sorted_B):
     
 min_sweet = sweet_strategy(X,sorted_A)
 min_salty = salty_strategy(Y,sorted_B)
+
 if min_sweet is None and min_salty is None:
     print(N)
 else:
+    if min_sweet is None:
+        min_sweet = N
+    if min_salty is None:
+        min_salty = N
     min_cnt = min(min_sweet, min_salty)
     print(min_cnt)
+# %%
