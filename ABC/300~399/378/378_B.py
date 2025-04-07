@@ -1,34 +1,26 @@
 # %%
-N=int(input())
+N = int(input())
 x=[]
 for i in range(N):
-    a,b=map(int,input().split())
-    x.append([a,b])
+    q,r=map(int,input().split())
+    x.append([q,r])
 
-Q=int(input())
+Q = int(input())
 y=[]
 for i in range(Q):
-    a,b=map(int,input().split())
-    y.append([a,b])
+    t,d=map(int,input().split())
+    y.append([t,d]) 
 
-for j in range(Q):
-    d=y[j][1]
-    q=x[y[j][0]-1][0]
-    r=x[y[j][0]-1][1]
-    
+for i in range(Q):
+    t=y[i][0]
+    d=y[i][1]
+    q=x[t-1][0]
+    r=x[t-1][1]
     if d<=r:
         print(r)
-    elif d%q==r:
-        print(d)
+    elif d<=q+r:
+        print(q+r)
+    elif d<=(d//q)*q+r:
+        print((d//q)*q+r)
     else:
-        for i in range(30):
-            if d<i*q+r:
-                print(i*q+r)
-                break
-            else:
-                pass
-
-# %%
-a=2
-print(a//5)
-# %%
+        print(((d//q)+1)*q+r)
