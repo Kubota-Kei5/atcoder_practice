@@ -75,4 +75,5 @@ for i in range(N):
                     visited[nb] = True
                     stack.append(nb)
 
+
 print(group_cnt)
