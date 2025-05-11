@@ -1,0 +1,18 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug Current TS File",
+      "type": "node",
+      "request": "launch",
+      "program": "${file}",
+      "cwd": "${workspaceFolder}/ts_atcoder",
+      "console": "internalConsole",
+      "internalConsoleOptions": "neverOpen",
+      "runtimeArgs": ["-r", "ts-node/register"],
+      "env": {
+        "TS_NODE_PROJECT": "${workspaceFolder}/ts_atcoder/tsconfig.json"
+      }
+    }
+  ]
+}
