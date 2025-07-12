@@ -1,0 +1,26 @@
+{
+  "name": "Go AtCoder",
+  "image": "mcr.microsoft.com/devcontainers/go:1.22",
+  "remoteUser": "vscode",
+
+  // ---------- 追加ツールは Features で ----------
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": { "version": "20" },
+    "ghcr.io/devcontainers/features/python:1": { "version": "3.11" }
+  },
+
+  // ---------- VS Code 設定 ----------
+  "settings": {
+    "go.useLanguageServer": true,
+    "[go]": {
+      "editor.defaultFormatter": "golang.go",
+      "editor.formatOnSave": true
+    }
+  },
+
+  // ---------- 拡張機能 ----------
+  "extensions": ["golang.Go", "SanaAjani.taskrunnercode"],
+
+  // ---------- 初回セットアップ ----------
+  "postCreateCommand": "npm install -g atcoder-cli && pip install --no-cache-dir --break-system-packages online-judge-tools && go mod init go_atcoder || true"
+}

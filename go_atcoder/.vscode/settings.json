@@ -1,0 +1,5 @@
+{
+  "go.formatTool": "goimports",
+  "go.lintTool": "golangci-lint",
+  "go.useLanguageServer": true
+}
