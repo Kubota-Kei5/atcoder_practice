@@ -1,12 +1,11 @@
 # ベースイメージをGoの最新バージョンへ
-FROM golang:1.22.4
-
-RUN useradd -ms /bin/bash vscode
+FROM mcr.microsoft.com/devcontainers/go:1.22
 
 WORKDIR /workspaces/go_atcoder
 
-RUN go install github.com/securego/gosec/v2/cmd/gosec@latest \
-    && go install golang.org/x/tools/cmd/goimports@latest \
-    && go install github.com/cweill/gotests/...@latest
+USER root
+RUN go install github.com/securego/gosec/v2/cmd/gosec@v2.21.0 \
+ && go install golang.org/x/tools/cmd/goimports@v0.24.0 \
+ && go install github.com/cweill/gotests/gotests@latest
 
 USER vscode

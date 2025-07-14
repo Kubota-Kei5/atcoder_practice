@@ -1,13 +1,21 @@
 {
   "name": "Go AtCoder",
-  "image": "mcr.microsoft.com/devcontainers/go:1.22",
   "remoteUser": "vscode",
+  "build": { "dockerfile": "Dockerfile" },
 
   // ---------- 追加ツールは Features で ----------
   "features": {
     "ghcr.io/devcontainers/features/node:1": { "version": "20" },
     "ghcr.io/devcontainers/features/python:1": { "version": "3.11" }
   },
+
+  "mounts": [
+    // AtCoder-CLI 設定ファイル
+    "type=bind,source=${localEnv:HOME}/.config/atcoder-cli-nodejs,target=/home/vscode/.config/atcoder-cli-nodejs,consistency=cached",
+
+    // online-judge-tools の cookie（任意）
+    "type=bind,source=${localEnv:HOME}/.local/share/online-judge-tools,target=/home/vscode/.local/share/online-judge-tools,consistency=cached"
+  ],
 
   // ---------- VS Code 設定 ----------
   "settings": {
